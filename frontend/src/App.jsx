@@ -7,29 +7,42 @@ import './App.css';
 function App() {
   const [projects, setProjects] = useState([]);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  
+  // Form State
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
-    // 1. Initialize Animations
     AOS.init({ duration: 1000, once: true, easing: 'ease-out-quad' });
-    
-    // 2. Fetch Project Data
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
   }, []);
 
-  // 3. Theme Toggle Logic
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+    // Simulate API Call
+    setTimeout(() => {
+      setStatus('Message Sent Successfully! ✅');
+      setFormData({ name: '', email: '', message: '' });
+    }, 2000);
+  };
+
   return (
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
-        {/* THEME TOGGLE */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
@@ -86,15 +99,42 @@ function App() {
           </div>
         </section>
 
-        {/* FOOTER */}
+        {/* CONTACT SECTION WITH FORM AND ORIGINAL BUTTONS */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>
+            
+            {/* Form added above the buttons */}
+            <form className="advanced-form" onSubmit={handleFormSubmit}>
+              <div className="form-group">
+                <input 
+                  type="text" name="name" placeholder="Your Name" 
+                  value={formData.name} onChange={handleFormChange} required 
+                />
+              </div>
+              <div className="form-group">
+                <input 
+                  type="email" name="email" placeholder="Email Address" 
+                  value={formData.email} onChange={handleFormChange} required 
+                />
+              </div>
+              <div className="form-group">
+                <textarea 
+                  name="message" placeholder="Your Message" rows="4"
+                  value={formData.message} onChange={handleFormChange} required 
+                ></textarea>
+              </div>
+              <button type="submit" className="submit-btn">Send Message</button>
+              {status && <p className="form-status">{status}</p>}
+            </form>
+
+            {/* Original Buttons Kept Exactly the Same */}
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
               <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">LinkedIn</a>
               <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">Send Email</a>
             </div>
+            
             <p className="footer-copyright">Designed & Developed by Dinesh Kumar © 2026</p>
           </div>
         </footer>

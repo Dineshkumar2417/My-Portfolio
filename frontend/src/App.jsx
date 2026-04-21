@@ -9,13 +9,16 @@ function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
+    // 1. Initialize Animations
     AOS.init({ duration: 1000, once: true, easing: 'ease-out-quad' });
     
+    // 2. Fetch Project Data
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
-      .catch(err => console.error("API Error:", err));
+      .catch(err => console.error("Data Fetch Error:", err));
   }, []);
 
+  // 3. Theme Toggle Logic
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
@@ -26,6 +29,7 @@ function App() {
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
+        {/* THEME TOGGLE */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>

@@ -6,25 +6,34 @@ import './App.css';
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
-    // Initialize Scroll Animations
-    AOS.init({ 
-      duration: 1000, 
-      once: true,
-      easing: 'ease-out'
-    });
-
-    // Fetch Project Data
+    // 1. Initialize Scroll Animations
+    AOS.init({ duration: 1000, once: true, easing: 'ease-out' });
+    
+    // 2. Fetch Project Data from your Render Backend
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("API Error:", err));
   }, []);
 
+  // 3. Theme Toggle Function
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
   return (
-    <div className="main-wrapper">
+    <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
+        {/* FLOATING THEME TOGGLE */}
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+
         {/* HERO SECTION */}
         <header className="hero-section" data-aos="fade-down">
           <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
@@ -37,25 +46,18 @@ function App() {
           </p>
           <div className="skill-pills-hero">
             {["MongoDB", "Express", "React", "Node.js", "Python", "Power BI", "SQL", "Machine Learning"].map((skill, i) => (
-              <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>
-                {skill}
-              </span>
+              <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>{skill}</span>
             ))}
           </div>
         </header>
 
-        {/* TECHNICAL EXPERTISE SECTION */}
+        {/* TECHNICAL EXPERTISE */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Technical Expertise</h2>
             <p className="about-text">
-              As a <strong>2024 graduate</strong>, I build high-performance web applications using the <strong>MERN Stack</strong>, 
-              focusing on scalable architecture and seamless user experiences.
-            </p>
-            <p className="about-text" style={{ marginTop: '20px' }}>
-              Beyond the web, I leverage <strong>Python</strong> and <strong>Data Science libraries</strong> to extract actionable insights. 
-              From interactive <strong>Power BI dashboards</strong> to <strong>Machine Learning models</strong>, 
-              I am driven by data-led decision making.
+              As a <strong>2024 graduate</strong> from Chandigarh, I build high-performance web applications using the <strong>MERN Stack</strong>. 
+              I also leverage <strong>Python</strong> to extract actionable insights via <strong>Machine Learning</strong> and <strong>Data Visualization</strong>.
             </p>
           </div>
         </section>
@@ -65,16 +67,9 @@ function App() {
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-list">
             {projects.map((project, index) => (
-              <div 
-                key={index} 
-                className="project-card" 
-                data-aos="fade-up" 
-                data-aos-delay={index * 150}
-              >
+              <div key={index} className="project-card" data-aos="fade-up" data-aos-delay={index * 150}>
                 <div className="project-image-container">
-                  <div className="text-logo">
-                    Dev<span className="blue-part">Sync</span>
-                  </div>
+                  <div className="text-logo">Dev<span className="blue-part">Sync</span></div>
                 </div>
                 <div className="project-info">
                   <h3>{project.title}</h3>
@@ -93,7 +88,6 @@ function App() {
         {/* BOXED CONTACT FOOTER */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
-            <span className="status-badge">● AVAILABLE FOR WORK</span>
             <h2 className="contact-title">Let's Work Together</h2>
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
@@ -103,7 +97,6 @@ function App() {
             <p className="footer-copyright">Designed & Developed by Dinesh Kumar © 2026</p>
           </div>
         </footer>
-
       </div>
     </div>
   );

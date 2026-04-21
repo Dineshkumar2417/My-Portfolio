@@ -48,15 +48,13 @@ function App() {
             <h2 className="section-accent">Technical Expertise</h2>
             <p className="about-text">
               As a <strong>2024 graduate</strong>, I build high-performance web applications using the <strong>MERN Stack</strong>, 
-              focusing on scalable architecture and seamless user experiences. My development 
-              workflow integrates <strong>modern JavaScript (ES6+)</strong> with robust backend 
-              logic to deliver end-to-end digital solutions.
+              focusing on scalable architecture and seamless user experiences.
             </p>
             <p className="about-text" style={{ marginTop: '15px' }}>
               Beyond the web, I leverage <strong>Python</strong> and <strong>Data Science 
-              libraries</strong> to extract actionable insights from complex datasets. From 
-              developing interactive <strong>Power BI dashboards</strong> to implementing 
-              <strong> Machine Learning models</strong>, I am driven by the power of data-led 
+              libraries</strong> to extract actionable insights. From 
+              interactive <strong>Power BI dashboards</strong> to 
+              <strong> Machine Learning models</strong>, I am driven by data-led 
               decision making.
             </p>
           </div>
@@ -68,12 +66,13 @@ function App() {
           <div className="project-list">
             {projects.map((project, index) => (
               <div key={index} className="project-card">
-                <div className="project-content">
-                  <h3>{project.title}</h3>
-                  <p className="project-desc">{project.description}</p>
-                  <div className="tech-container">
-                    {project.tech.map((t, i) => <span key={i} className="tech-tag">{t}</span>)}
-                  </div>
+                <h3>{project.title}</h3>
+                <p className="project-desc">{project.description}</p>
+                <div className="tech-container">
+                  {/* Make sure your MongoDB data field is named 'tech' or change it to 'techStack' here */}
+                  {project.tech && project.tech.map((t, i) => (
+                    <span key={i} className="tech-tag">{t}</span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -87,7 +86,7 @@ function App() {
             <h2 className="contact-title">Let’s Work Together</h2>
             <p className="contact-desc">
               Looking for a developer who can handle both the <strong>Frontend</strong> and the 
-              <strong> Data</strong>? Let's connect and discuss your next project.
+              <strong> Data</strong>? Let's connect.
             </p>
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn github">GitHub</a>

@@ -1,11 +1,11 @@
-/* --- GLOBAL & INTERACTIVE STYLES --- */
+/* --- GLOBAL & INTERACTIVE --- */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 
 * { 
   box-sizing: border-box; 
   margin: 0; 
   padding: 0;
-  cursor: none !important; /* Hides default cursor for our custom glow */
+  cursor: auto !important; /* Standard cursor restored */
 }
 
 body { 
@@ -15,30 +15,29 @@ body {
   overflow-x: hidden; 
 }
 
-/* 1. MOUSE GLOW SPOTLIGHT */
+/* 1. MINIMALIST MOUSE GLOW */
 .cursor-glow {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 75%);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  transition: width 0.3s ease;
 }
 
 .main-wrapper {
   width: 100%; min-height: 100vh;
-  background: radial-gradient(circle at 50% 0%, #0c4a6e 0%, #020617 75%);
+  background: radial-gradient(circle at 50% 0%, #0c4a6e 0%, #020617 80%);
   display: flex; flex-direction: column; align-items: center;
 }
 
 .portfolio-app { width: 100%; max-width: 1100px; padding: 60px 24px; position: relative; }
 
-/* 2. HERO SECTION */
-.hero-section { text-align: center; margin-bottom: 120px; }
-.profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #38bdf8; box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); margin-bottom: 25px; }
+/* 2. HERO & SKILLS */
+.hero-section { text-align: center; margin-bottom: 100px; }
+.profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #38bdf8; margin-bottom: 25px; box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); }
 .hero-title { font-size: 3.5rem; letter-spacing: -2px; margin: 0; }
 .hero-subtitle { font-size: 1.2rem; color: #94a3b8; margin-top: 10px; }
 
@@ -48,7 +47,7 @@ body {
   padding: 10px 20px; border-radius: 100px; font-size: 0.9rem; color: #94a3b8; 
   transition: 0.3s;
 }
-.skill-pills-hero span:hover { background: #38bdf8; color: #020617; transform: translateY(-5px); }
+.skill-pills-hero span:hover { background: #38bdf8; color: #020617; transform: translateY(-3px); }
 
 /* 3. EXPERTISE SECTION */
 .expertise-section { width: 100%; margin-bottom: 120px; display: flex; justify-content: center; }
@@ -60,52 +59,50 @@ body {
 .section-accent { color: #38bdf8; font-size: 2.2rem; margin-bottom: 25px; }
 .about-text { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
 
-/* 4. PROJECT CARDS */
+/* 4. PROJECTS GRID */
 .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; }
 .project-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
 
 .project-card {
   background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px; overflow: hidden; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 28px; overflow: hidden; transition: 0.4s ease;
 }
-.project-card:hover { transform: translateY(-15px); border-color: #38bdf8; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+.project-card:hover { transform: translateY(-10px); border-color: #38bdf8; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
 
 .project-image-container { 
-  width: 100%; height: 180px; background: rgba(0,0,0,0.3); 
+  width: 100%; height: 180px; background: rgba(0,0,0,0.2); 
   display: flex; align-items: center; justify-content: center; 
 }
 .text-logo { font-size: 2.2rem; font-weight: 800; letter-spacing: -1.5px; }
-.blue-part { color: #38bdf8; font-weight: 300; margin-left: 4px; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+.blue-part { color: #38bdf8; font-weight: 300; margin-left: 4px; }
 
 .project-info { padding: 35px; }
-.project-info h3 { font-size: 1.6rem; margin-bottom: 15px; color: #fff; }
+.project-info h3 { font-size: 1.6rem; color: #fff; margin-bottom: 12px; }
 .project-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
 .tech-tag { background: rgba(56, 189, 248, 0.1); color: #38bdf8; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; margin: 0 8px 8px 0; display: inline-block; }
 
-/* 5. BOXED CONTACT SECTION */
+/* 5. BOXED FOOTER */
 .contact-card-main {
   background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); 
-  border-radius: 40px; padding: 80px 40px; text-align: center; margin-top: 100px;
+  border-radius: 40px; padding: 80px 40px; text-align: center; margin-top: 60px;
 }
-.status-badge { color: #4ade80; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
+.status-badge { color: #4ade80; font-size: 0.85rem; font-weight: 700; }
 .contact-title { font-size: 3.5rem; margin: 20px 0; letter-spacing: -2px; }
 .contact-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
 .contact-btn {
   text-decoration: none; padding: 18px 35px; min-width: 180px; border-radius: 18px;
-  font-weight: 700; color: #fff; background: rgba(255,255,255,0.05); transition: 0.4s;
+  font-weight: 700; color: #fff; background: rgba(255,255,255,0.05); transition: 0.3s;
   display: flex; align-items: center; justify-content: center;
 }
 .contact-btn.email { background: #38bdf8; color: #020617; border: none; }
-.contact-btn:hover { transform: scale(1.05) translateY(-5px); background: rgba(255,255,255,0.1); }
+.contact-btn:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
 .footer-copyright { margin-top: 60px; color: #475569; font-size: 0.9rem; }
 
-/* --- MOBILE RESPONSIVENESS --- */
+/* --- MOBILE --- */
 @media (max-width: 768px) {
-  * { cursor: auto !important; } /* Normal cursor for mobile touch */
   .cursor-glow { display: none; }
-  .hero-title { font-size: 2.6rem; }
-  .contact-title { font-size: 2.4rem; }
-  .about-card { padding: 40px 20px; }
+  .hero-title { font-size: 2.5rem; }
+  .contact-title { font-size: 2.2rem; }
   .contact-row { flex-direction: column; align-items: center; }
   .contact-btn { width: 100%; }
 }

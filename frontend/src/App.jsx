@@ -9,21 +9,23 @@ function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // 1. Initialize Scroll Animations
+    // Initialize Scroll Animations
     AOS.init({ 
       duration: 1000, 
       once: true,
       easing: 'ease-out-back'
     });
 
-    // 2. Fetch Project Data
+    // Fetch Project Data
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("API Error:", err));
 
-    // 3. Mouse Glow Tracking
+    // Smoother Mouse Tracking
     const handleMouseMove = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
+      window.requestAnimationFrame(() => {
+        setCursorPos({ x: e.clientX, y: e.clientY });
+      });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <div className="main-wrapper">
-      {/* CREATIVE CURSOR GLOW */}
+      {/* SUBTLE MOUSE SPOTLIGHT */}
       <div 
         className="cursor-glow" 
         style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
@@ -109,9 +111,6 @@ function App() {
           <div className="contact-card-main">
             <span className="status-badge">● AVAILABLE FOR WORK</span>
             <h2 className="contact-title">Let's Work Together</h2>
-            <p className="contact-desc">
-              Looking for a developer who can handle both the <strong>Frontend</strong> and the <strong>Data</strong>? Let's connect.
-            </p>
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
               <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">LinkedIn</a>

@@ -6,39 +6,23 @@ import './App.css';
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Initialize Scroll Animations
     AOS.init({ 
       duration: 1000, 
       once: true,
-      easing: 'ease-out-back'
+      easing: 'ease-out'
     });
 
     // Fetch Project Data
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("API Error:", err));
-
-    // Smoother Mouse Tracking
-    const handleMouseMove = (e) => {
-      window.requestAnimationFrame(() => {
-        setCursorPos({ x: e.clientX, y: e.clientY });
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
     <div className="main-wrapper">
-      {/* SUBTLE MOUSE SPOTLIGHT */}
-      <div 
-        className="cursor-glow" 
-        style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
-      />
-
       <div className="portfolio-app">
         
         {/* HERO SECTION */}

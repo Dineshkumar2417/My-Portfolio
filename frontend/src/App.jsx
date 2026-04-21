@@ -90,9 +90,9 @@ function App() {
               <strong> Data</strong>? Let's connect and discuss your next project.
             </p>
             <div className="contact-row">
-              <a href="https://github.com/dinesh-kumar" target="_blank" rel="noreferrer" className="contact-btn github">GitHub</a>
-              <a href="https://linkedin.com/in/dinesh-kumar" target="_blank" rel="noreferrer" className="contact-btn linkedin">LinkedIn</a>
-              <a href="mailto:dinesh@email.com" className="contact-btn email">Send Email</a>
+              <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn github">GitHub</a>
+              <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn linkedin">LinkedIn</a>
+              <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">Send Email</a>
             </div>
             <p className="footer-copyright">Designed & Developed by Dinesh Kumar © 2026</p>
           </div>

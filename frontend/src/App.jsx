@@ -9,16 +9,13 @@ function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
-    // 1. Initialize Scroll Animations
-    AOS.init({ duration: 1000, once: true, easing: 'ease-out' });
+    AOS.init({ duration: 1000, once: true, easing: 'ease-out-quad' });
     
-    // 2. Fetch Project Data from your Render Backend
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("API Error:", err));
   }, []);
 
-  // 3. Theme Toggle Function
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
@@ -29,17 +26,17 @@ function App() {
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
-        {/* FLOATING THEME TOGGLE */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
         {/* HERO SECTION */}
         <header className="hero-section" data-aos="fade-down">
-          <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
+          <div className="profile-wrapper">
+            <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
+          </div>
           <div className="hero-intro">
-            <span className="wave-emoji">👋</span>
-            <h1 className="hero-title">Hey, I'm Dinesh</h1>
+            <h1 className="hero-title">Hey, I'm <span className="gradient-text">Dinesh</span></h1>
           </div>
           <p className="hero-subtitle">
             Specializing in <strong>Full-Stack Development</strong> & <strong>Data Analytics</strong>.
@@ -85,7 +82,7 @@ function App() {
           </div>
         </section>
 
-        {/* BOXED CONTACT FOOTER */}
+        {/* FOOTER */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>

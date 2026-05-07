@@ -40,27 +40,28 @@ function App() {
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
-        {/* HERO SECTION */}
+        {/* HERO SECTION - DS PRIORITY */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
           </div>
           <h1 className="hero-title">Hey, I'm <span className="gradient-text">Dinesh</span></h1>
-          <p className="hero-subtitle">Full-Stack Developer & Data Science Aspirant</p>
+          <p className="hero-subtitle">Data Scientist & Full-Stack Engineer</p>
           <div className="skill-pills-hero">
-            {["MongoDB", "Express", "React", "Node.js", "Python", "Power BI", "SQL", "Machine Learning"].map((skill, i) => (
+            {["Python", "Machine Learning", "Power BI", "Pandas", "Scikit-Learn", "MongoDB", "React", "Node.js"].map((skill, i) => (
               <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>{skill}</span>
             ))}
           </div>
         </header>
 
-        {/* EXPERTISE SECTION */}
+        {/* IMPROVED SUMMARY SECTION */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
-            <h2 className="section-accent">Technical Expertise</h2>
+            <h2 className="section-accent">About Me & Expertise</h2>
             <p className="about-text">
-              As a <strong>2024 graduate</strong> from Chandigarh, I build high-performance web applications using the <strong>MERN Stack</strong>. 
-              I also leverage <strong>Python</strong> for <strong>Data Science</strong> and <strong>ML</strong> projects.
+              I am a <strong>2024 Computer Science graduate</strong> with a passion for turning raw data into actionable insights. 
+              My core strength lies in <strong>Machine Learning</strong> and <strong>Data Analytics</strong>, where I build predictive models and interactive <strong>Power BI</strong> dashboards. 
+              Alongside data science, I am proficient in the <strong>MERN stack</strong>, allowing me to build complete, data-driven web applications.
             </p>
           </div>
         </section>
@@ -94,19 +95,19 @@ function App() {
           </div>
         </section>
 
-        {/* CONTACT SECTION - FIXED SIZE & HOVER */}
+        {/* CONTACT SECTION - MAIL ADDED */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>
             <form className="advanced-form" onSubmit={handleFormSubmit}>
               <div className="form-group">
-                <input type="text" placeholder="Name" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
+                <input type="text" placeholder="Your Name" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
               </div>
               <div className="form-group">
-                <input type="email" placeholder="Email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                <input type="email" placeholder="Email Address" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
               <div className="form-group">
-                <textarea placeholder="Message" rows="5" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
+                <textarea placeholder="Tell me about your project..." rows="5" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
               </div>
               <button type="submit" className="submit-btn">Send Message</button>
               {status && <p className="status-msg">{status}</p>}
@@ -114,6 +115,7 @@ function App() {
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
               <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">LinkedIn</a>
+              <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">Send Email</a>
             </div>
             <p className="footer-copyright">Developed by Dinesh Kumar © 2026</p>
           </div>

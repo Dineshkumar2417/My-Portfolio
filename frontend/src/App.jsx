@@ -40,6 +40,7 @@ function App() {
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
+        {/* HERO SECTION */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
@@ -53,6 +54,7 @@ function App() {
           </div>
         </header>
 
+        {/* EXPERTISE SECTION */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Technical Expertise</h2>
@@ -63,7 +65,7 @@ function App() {
           </div>
         </section>
 
-        {/* UPGRADED PROJECTS SECTION */}
+        {/* PROJECTS SECTION */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-grid">
@@ -92,6 +94,7 @@ function App() {
           </div>
         </section>
 
+        {/* CONTACT SECTION - FIXED SIZE & HOVER */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>
@@ -103,7 +106,7 @@ function App() {
                 <input type="email" placeholder="Email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
               <div className="form-group">
-                <textarea placeholder="Message" rows="4" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
+                <textarea placeholder="Message" rows="5" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
               </div>
               <button type="submit" className="submit-btn">Send Message</button>
               {status && <p className="status-msg">{status}</p>}

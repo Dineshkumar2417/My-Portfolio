@@ -184,10 +184,9 @@ body {
 
 /* EXACT SAME HOVER AS BUTTONS */
 .project-card:hover {
-  transform: translateY(-8px) scale(1.05); /* Synced Values */
+  transform: translateY(-8px) scale(1.05);
   border-color: var(--accent);
-  box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25);
-  background: rgba(56, 189, 248, 0.02);
+  background: rgba(56, 189, 248, 0.05);
 }
 
 .project-header {

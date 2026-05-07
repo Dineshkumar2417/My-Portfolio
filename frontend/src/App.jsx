@@ -5,7 +5,6 @@ import 'aos/dist/aos.css';
 import './App.css';
 
 function App() {
-  // Empty array because data is coming dynamically from your Render backend
   const [projects, setProjects] = useState([]);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -18,7 +17,6 @@ function App() {
       easing: 'ease-out-quad' 
     });
 
-    // Fetching all projects (DevSync, Crop Prediction, Real Estate) from MongoDB
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
@@ -47,6 +45,7 @@ function App() {
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
+        {/* Hero Section */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
@@ -62,19 +61,52 @@ function App() {
           </div>
         </header>
 
+        {/* Professional Summary */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Data Science & Technical Vision</h2>
             <p className="about-text">
               I am a passion-driven professional dedicated to transforming complex datasets into meaningful patterns and actionable insights. 
-              My core expertise lies in developing <strong>Machine Learning models</strong> and enabling data-driven decision-making using tools like Scikit-Learn, Pandas, and Python to solve real-world challenges. 
-              I have extensive experience in creating sophisticated <strong>Power BI</strong> dashboards that translate intricate data into intuitive visual narratives. 
-              Additionally, my proficiency in the <strong>MERN stack</strong> provides a versatile edge, allowing me to integrate advanced data analytics into seamless, high-performance web applications. 
-              I completed my graduation in 2024, focusing on technical scalability and analytical precision.
+              My core expertise lies in developing <strong>Machine Learning models</strong> and enabling data-driven decision-making using tools like Scikit-Learn, Pandas, and Python. 
+              I am proficient in the <strong>MERN stack</strong>, allowing me to build complete, data-driven web applications with analytical precision.
             </p>
           </div>
         </section>
 
+        {/* NEW: Education & Certifications Section */}
+        <section className="edu-cert-section">
+          <div className="section-header-row">
+            <h2 className="section-title" data-aos="fade-right">Education & Credentials</h2>
+          </div>
+          <div className="info-grid">
+            {/* Education Card */}
+            <div className="info-card bounce-card" data-aos="fade-up">
+              <div className="card-icon">🎓</div>
+              <h3>Academic Background</h3>
+              <div className="card-item">
+                <span className="item-year">2024</span>
+                <h4>Bachelor of Arts in Computer Science & Economics</h4>
+                <p>Punjabi University, Patiala</p>
+              </div>
+            </div>
+
+            {/* Certifications Card */}
+            <div className="info-card bounce-card" data-aos="fade-up" data-aos-delay="200">
+              <div className="card-icon">📜</div>
+              <h3>Professional Training</h3>
+              <div className="card-item">
+                <h4>Advanced MERN Stack Development</h4>
+                <p>Professional Certification Program</p>
+              </div>
+              <div className="card-item">
+                <h4>Data Science & Machine Learning</h4>
+                <p>Comprehensive Applied Science Training</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Technical Projects */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-grid">
@@ -103,6 +135,7 @@ function App() {
           </div>
         </section>
 
+        {/* Contact Section */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>

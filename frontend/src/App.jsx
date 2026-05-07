@@ -5,20 +5,20 @@ import 'aos/dist/aos.css';
 import './App.css';
 
 function App() {
+  // Empty array because data is coming dynamically from your Render backend
   const [projects, setProjects] = useState([]);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    // Initialize Scroll Animations
     AOS.init({ 
       duration: 1000, 
       once: true, 
       easing: 'ease-out-quad' 
     });
 
-    // Fetch projects from your Render Backend
+    // Fetching all projects (DevSync, Crop Prediction, Real Estate) from MongoDB
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
@@ -43,12 +43,10 @@ function App() {
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
-        {/* Navigation / Toggle */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
-        {/* Hero Section */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
@@ -59,14 +57,11 @@ function App() {
           <p className="hero-subtitle">Data Scientist & Full-Stack Developer</p>
           <div className="skill-pills-hero">
             {["Python", "Machine Learning", "Power BI", "Pandas", "Scikit-Learn", "SQL", "React", "Node.js"].map((skill, i) => (
-              <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>
-                {skill}
-              </span>
+              <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>{skill}</span>
             ))}
           </div>
         </header>
 
-        {/* Professional Summary Section (English) */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Data Science & Technical Vision</h2>
@@ -80,7 +75,6 @@ function App() {
           </div>
         </section>
 
-        {/* Projects Grid with Snappy Bounce Hover */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-grid">
@@ -89,14 +83,8 @@ function App() {
                 <div className="project-header">
                   <span className="folder-icon">📂</span>
                   <div className="project-links">
-                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="link-btn">
-                      GitHub
-                    </a>
-                    {project.liveLink && (
-                      <a href={project.liveLink} target="_blank" rel="noreferrer" className="link-btn live">
-                        Live
-                      </a>
-                    )}
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="link-btn">GitHub</a>
+                    {project.liveLink && <a href={project.liveLink} target="_blank" rel="noreferrer" className="link-btn live">Live</a>}
                   </div>
                 </div>
                 <div className="project-body">
@@ -115,54 +103,27 @@ function App() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>
             <form className="advanced-form" onSubmit={handleFormSubmit}>
               <div className="form-group">
-                <input 
-                  type="text" 
-                  placeholder="Your Name" 
-                  required 
-                  value={formData.name} 
-                  onChange={(e) => setFormData({...formData, name: e.target.value})} 
-                />
+                <input type="text" placeholder="Your Name" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
               </div>
               <div className="form-group">
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  required 
-                  value={formData.email} 
-                  onChange={(e) => setFormData({...formData, email: e.target.value})} 
-                />
+                <input type="email" placeholder="Email Address" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
               <div className="form-group">
-                <textarea 
-                  placeholder="Tell me about your project..." 
-                  rows="5" 
-                  required 
-                  value={formData.message} 
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                ></textarea>
+                <textarea placeholder="Tell me about your project..." rows="5" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
               </div>
               <button type="submit" className="submit-btn">Send Message</button>
               {status && <p className="status-msg">{status}</p>}
             </form>
-            
             <div className="contact-row">
-              <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">
-                LinkedIn
-              </a>
-              <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">
-                Send Email
-              </a>
+              <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
+              <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">LinkedIn</a>
+              <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">Send Email</a>
             </div>
-            
             <p className="footer-copyright">Developed by Dinesh Kumar © 2026</p>
           </div>
         </footer>

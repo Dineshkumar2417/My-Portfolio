@@ -11,14 +11,14 @@ function App() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    // Scroll Animations Initialize
+    // Initialize Scroll Animations
     AOS.init({ 
       duration: 1000, 
       once: true, 
       easing: 'ease-out-quad' 
     });
 
-    // Fetching projects from your backend
+    // Fetch projects from your Render Backend
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
@@ -43,7 +43,7 @@ function App() {
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
-        {/* Navigation Toggle */}
+        {/* Navigation / Toggle */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
@@ -66,7 +66,7 @@ function App() {
           </div>
         </header>
 
-        {/* English Professional Summary */}
+        {/* Professional Summary Section (English) */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Data Science & Technical Vision</h2>
@@ -80,7 +80,7 @@ function App() {
           </div>
         </section>
 
-        {/* Technical Projects with Intense Bounce */}
+        {/* Projects Grid with Snappy Bounce Hover */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-grid">

@@ -1,5 +1,5 @@
 /* =========================================
-   1. GLOBAL VARIABLES
+   1. GLOBAL VARIABLES & THEMES
    ========================================= */
 :root {
   --bg: #020617;
@@ -15,7 +15,7 @@
 [data-theme='light'] {
   --bg: #fdfdfd;
   --text: #0f172a;
-  --subtext: #1e293b;
+  --subtext: #1e293b; /* High contrast for English summary */
   --card: #ffffff;
   --border: #cbd5e1;
   --accent: #2563eb;
@@ -24,13 +24,13 @@
 }
 
 /* =========================================
-   2. BASE STYLES
+   2. CORE RESET
    ========================================= */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -56,7 +56,7 @@ body {
 }
 
 /* =========================================
-   3. HERO & COMPONENTS
+   3. NAVIGATION / TOGGLE
    ========================================= */
 .theme-toggle {
   position: fixed;
@@ -75,6 +75,14 @@ body {
   justify-content: center;
 }
 
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--accent);
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
 .hero-section {
   text-align: center;
   margin-bottom: 80px;
@@ -119,10 +127,11 @@ body {
   font-weight: 700;
   margin: 5px;
   display: inline-block;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 /* =========================================
-   4. SUMMARY CARD
+   5. SUMMARY CARD
    ========================================= */
 .about-card {
   background: var(--card);
@@ -149,7 +158,7 @@ body {
 }
 
 /* =========================================
-   5. PROJECT GRID
+   6. PROJECTS GRID (WITH HOVER)
    ========================================= */
 .project-grid {
   display: grid;
@@ -169,7 +178,7 @@ body {
 }
 
 .project-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-12px); /* RESTORED HOVER */
   border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
@@ -197,6 +206,25 @@ body {
   margin-left: 8px;
 }
 
+.link-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.project-body h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.project-body p {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
 .tech-badge {
   font-size: 0.7rem;
   background: rgba(56, 189, 248, 0.1);
@@ -208,73 +236,87 @@ body {
 }
 
 /* =========================================
-   6. CONTACT & FOOTER
+   7. CONTACT SECTION (FIXED SIZE & HOVER)
    ========================================= */
 .contact-card-main {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 40px;
-  padding: 70px 40px;
+  padding: 80px 40px;
   text-align: center;
   margin-top: 80px;
+  width: 100%; /* RESTORED WIDTH */
 }
 
 .contact-title {
-  font-size: 3.2rem;
+  font-size: 3.5rem;
   margin-bottom: 40px;
+  letter-spacing: -1px;
 }
 
 .advanced-form {
-  max-width: 650px;
+  max-width: 700px; /* RESTORED FORM WIDTH */
   margin: 0 auto 50px auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .form-group input, 
 .form-group textarea {
   width: 100%;
-  padding: 16px;
-  border-radius: 12px;
+  padding: 18px;
+  border-radius: 15px;
   border: 1px solid var(--border);
   background: var(--input-bg);
   color: var(--text);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .submit-btn {
-  padding: 18px;
-  border-radius: 12px;
+  padding: 20px;
+  border-radius: 15px;
   border: none;
   background: var(--accent);
   color: #fff;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
+}
+
+.submit-btn:hover {
+  transform: translateY(-5px); /* RESTORED HOVER */
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
 }
 
 .contact-row {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .contact-btn {
   text-decoration: none;
-  padding: 15px 30px;
-  border-radius: 12px;
+  padding: 18px 40px;
+  border-radius: 15px;
   background: var(--card);
   border: 1px solid var(--border);
   color: var(--text);
   font-weight: 800;
-  font-size: 0.9rem;
-  min-width: 140px;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 150px;
+}
+
+.contact-btn:hover {
+  transform: translateY(-5px); /* RESTORED HOVER */
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.05);
 }
 
 .contact-btn.email {
@@ -285,13 +327,13 @@ body {
 
 .footer-copyright {
   margin-top: 60px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--subtext);
   font-weight: 700;
 }
 
 /* =========================================
-   7. RESPONSIVE
+   8. RESPONSIVE
    ========================================= */
 @media (max-width: 768px) {
   .hero-title, .contact-title {

@@ -18,7 +18,7 @@ function App() {
       easing: 'ease-out-quad' 
     });
 
-    // Fetch projects from backend
+    // Fetch projects from your Render Backend
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
@@ -66,7 +66,7 @@ function App() {
           </div>
         </header>
 
-        {/* Professional English Summary */}
+        {/* Professional Summary Section */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Data Science & Technical Vision</h2>
@@ -80,7 +80,7 @@ function App() {
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Technical Projects Grid */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
           <div className="project-grid">
@@ -162,6 +162,7 @@ function App() {
                 Send Email
               </a>
             </div>
+            
             <p className="footer-copyright">Developed by Dinesh Kumar © 2026</p>
           </div>
         </footer>

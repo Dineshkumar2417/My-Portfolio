@@ -11,14 +11,14 @@ function App() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    // Scroll Animations Initialize
+    // Initialize Scroll Animations
     AOS.init({ 
       duration: 1000, 
       once: true, 
       easing: 'ease-out-quad' 
     });
 
-    // Fetch projects from your Render Backend
+    // Fetch projects from backend
     axios.get('https://dinesh-portfolio-backend.onrender.com/api/projects')
       .then(res => setProjects(res.data))
       .catch(err => console.error("Data Fetch Error:", err));
@@ -33,9 +33,8 @@ function App() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setStatus('Sending...');
-    // Simulated send logic
     setTimeout(() => {
-      setStatus('Message Sent! ✅');
+      setStatus('Message Sent Successfully! ✅');
       setFormData({ name: '', email: '', message: '' });
     }, 2000);
   };
@@ -44,12 +43,12 @@ function App() {
     <div className="main-wrapper" data-theme={theme}>
       <div className="portfolio-app">
         
-        {/* Theme Toggle Button */}
+        {/* Navigation / Toggle */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
-        {/* Hero Section - Focused on Data Science */}
+        {/* Hero Section */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
@@ -67,16 +66,16 @@ function App() {
           </div>
         </header>
 
-        {/* Updated Summary Section */}
+        {/* Professional English Summary */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Data Science & Technical Vision</h2>
             <p className="about-text">
-              Main ek passion-driven professional hoon jo complex datasets ko meaningful patterns aur actionable insights mein convert karne mein believe karta hoon. 
-              Meri core expertise <strong>Machine Learning algorithms</strong> aur data-driven decision making mein hai, jahan main Scikit-Learn, Pandas aur Python jaise tools ka use karke real-world problems solve karta hoon. 
-              Maine financial aur marketing dashboards ke liye <strong>Power BI</strong> mein deep analytics work kiya hai, jo complex data ko simple visuals mein translate karne mein help karta hai. 
-              Iske saath hi, meri <strong>MERN stack</strong> proficiency mujhe ek versatile edge deti hai, jisse main high-end data analytics ko seamless web experiences ke saath integrate kar sakta hoon. 
-              Technical scalability aur analytical precision par focus karte hue, maine 2024 mein apni graduation poori ki hai.
+              I am a passion-driven professional dedicated to transforming complex datasets into meaningful patterns and actionable insights. 
+              My core expertise lies in developing <strong>Machine Learning models</strong> and enabling data-driven decision-making using tools like Scikit-Learn, Pandas, and Python to solve real-world challenges. 
+              I have extensive experience in creating sophisticated <strong>Power BI</strong> dashboards that translate intricate data into intuitive visual narratives. 
+              Additionally, my proficiency in the <strong>MERN stack</strong> provides a versatile edge, allowing me to integrate advanced data analytics into seamless, high-performance web applications. 
+              I completed my graduation in 2024, focusing on technical scalability and analytical precision.
             </p>
           </div>
         </section>

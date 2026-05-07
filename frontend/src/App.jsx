@@ -7,8 +7,6 @@ import './App.css';
 function App() {
   const [projects, setProjects] = useState([]);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
-  
-  // Form State
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
@@ -25,16 +23,11 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
-  const handleFormChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setStatus('Sending...');
-    // Simulate API Call
     setTimeout(() => {
-      setStatus('Message Sent Successfully! ✅');
+      setStatus('Message Sent! ✅');
       setFormData({ name: '', email: '', message: '' });
     }, 2000);
   };
@@ -47,17 +40,12 @@ function App() {
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
 
-        {/* HERO SECTION */}
         <header className="hero-section" data-aos="fade-down">
           <div className="profile-wrapper">
             <img src="/me.jpg" className="profile-img" alt="Dinesh Kumar" />
           </div>
-          <div className="hero-intro">
-            <h1 className="hero-title">Hey, I'm <span className="gradient-text">Dinesh</span></h1>
-          </div>
-          <p className="hero-subtitle">
-            Specializing in <strong>Full-Stack Development</strong> & <strong>Data Analytics</strong>.
-          </p>
+          <h1 className="hero-title">Hey, I'm <span className="gradient-text">Dinesh</span></h1>
+          <p className="hero-subtitle">Full-Stack Developer & Data Science Aspirant</p>
           <div className="skill-pills-hero">
             {["MongoDB", "Express", "React", "Node.js", "Python", "Power BI", "SQL", "Machine Learning"].map((skill, i) => (
               <span key={skill} data-aos="zoom-in" data-aos-delay={i * 100}>{skill}</span>
@@ -65,32 +53,37 @@ function App() {
           </div>
         </header>
 
-        {/* TECHNICAL EXPERTISE */}
         <section className="expertise-section" data-aos="fade-up">
           <div className="about-card">
             <h2 className="section-accent">Technical Expertise</h2>
             <p className="about-text">
               As a <strong>2024 graduate</strong> from Chandigarh, I build high-performance web applications using the <strong>MERN Stack</strong>. 
-              I also leverage <strong>Python</strong> to extract actionable insights via <strong>Machine Learning</strong> and <strong>Data Visualization</strong>.
+              I also leverage <strong>Python</strong> for <strong>Data Science</strong> and <strong>ML</strong> projects.
             </p>
           </div>
         </section>
 
-        {/* PROJECTS SECTION */}
+        {/* UPGRADED PROJECTS SECTION */}
         <section className="projects-section">
           <h2 className="section-title" data-aos="fade-right">Technical Projects</h2>
-          <div className="project-list">
+          <div className="project-grid">
             {projects.map((project, index) => (
               <div key={index} className="project-card" data-aos="fade-up" data-aos-delay={index * 150}>
-                <div className="project-image-container">
-                  <div className="text-logo">Dev<span className="blue-part">Sync</span></div>
+                <div className="project-header">
+                  <span className="folder-icon">📂</span>
+                  <div className="project-links">
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="link-btn">GitHub</a>
+                    {project.liveLink && <a href={project.liveLink} target="_blank" rel="noreferrer" className="link-btn live">Live</a>}
+                  </div>
                 </div>
-                <div className="project-info">
+                <div className="project-body">
                   <h3>{project.title}</h3>
-                  <p className="project-desc">{project.description}</p>
-                  <div className="tech-container">
-                    {(project.techStack || project.tech || []).map((t, i) => (
-                      <span key={i} className="tech-tag">{t}</span>
+                  <p>{project.description}</p>
+                </div>
+                <div className="project-footer">
+                  <div className="tech-stack">
+                    {(project.techStack || []).map((tech, i) => (
+                      <span key={i} className="tech-badge">{tech}</span>
                     ))}
                   </div>
                 </div>
@@ -99,43 +92,27 @@ function App() {
           </div>
         </section>
 
-        {/* CONTACT SECTION WITH FORM AND ORIGINAL BUTTONS */}
         <footer className="contact-section" data-aos="zoom-in">
           <div className="contact-card-main">
             <h2 className="contact-title">Let's Work Together</h2>
-            
-            {/* Form added above the buttons */}
             <form className="advanced-form" onSubmit={handleFormSubmit}>
               <div className="form-group">
-                <input 
-                  type="text" name="name" placeholder="Your Name" 
-                  value={formData.name} onChange={handleFormChange} required 
-                />
+                <input type="text" placeholder="Name" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
               </div>
               <div className="form-group">
-                <input 
-                  type="email" name="email" placeholder="Email Address" 
-                  value={formData.email} onChange={handleFormChange} required 
-                />
+                <input type="email" placeholder="Email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
               <div className="form-group">
-                <textarea 
-                  name="message" placeholder="Your Message" rows="4"
-                  value={formData.message} onChange={handleFormChange} required 
-                ></textarea>
+                <textarea placeholder="Message" rows="4" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
               </div>
               <button type="submit" className="submit-btn">Send Message</button>
-              {status && <p className="form-status">{status}</p>}
+              {status && <p className="status-msg">{status}</p>}
             </form>
-
-            {/* Original Buttons Kept Exactly the Same */}
             <div className="contact-row">
               <a href="https://github.com/Dineshkumar2417" target="_blank" rel="noreferrer" className="contact-btn">GitHub</a>
               <a href="https://www.linkedin.com/in/dinesh-kumar-ds/" target="_blank" rel="noreferrer" className="contact-btn">LinkedIn</a>
-              <a href="mailto:maniveenu17@gmail.com" className="contact-btn email">Send Email</a>
             </div>
-            
-            <p className="footer-copyright">Designed & Developed by Dinesh Kumar © 2026</p>
+            <p className="footer-copyright">Developed by Dinesh Kumar © 2026</p>
           </div>
         </footer>
       </div>
